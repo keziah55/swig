@@ -221,7 +221,7 @@ void NumPyDocConverter::fillStaticTables() {
 void NumPyDocConverter::setSectionHeader(std::string header, std::string &translatedComment) {
 
   if (!sectionHeaders[header]) {
-    translatedComment += header + "\n" + std::string(header.size(), '-') + "\n";
+    translatedComment += "\n" + header + "\n" + std::string(header.size(), '-') + "\n";
     sectionHeaders[header] = true;
   }
 }
@@ -584,15 +584,14 @@ void NumPyDocConverter::handleTagParam(DoxygenEntity &tag, std::string &translat
 void NumPyDocConverter::handleTagReturn(DoxygenEntity &tag, std::string &translatedComment, const std::string &) {
   IndentGuard indent(translatedComment, m_indent);
 
+  setSectionHeader("Returns", translatedComment);
+
   const std::string pytype = getPyDocType(currentNode);
   if (!pytype.empty()) {
-    translatedComment += ":rtype: ";
-    translatedComment += pytype;
-    translatedComment += "\n";
-    translatedComment += indent.getFirstLineIndent();
+    translatedComment += pytype + "\n";
   }
 
-  translatedComment += ":return: ";
+  translatedComment += m_indent;
   handleParagraph(tag, translatedComment);
 }
 
