@@ -97,7 +97,7 @@ https://www.swig.org/bugs.html.
 In order to operate correctly, SWIG relies upon a set of library
 files.  If after building SWIG, you get error messages like this,
 
-```
+```shell
 $ swig foo.i
 :1. Unable to find 'swig.swg'
 :3. Unable to find 'tcl8.swg'
