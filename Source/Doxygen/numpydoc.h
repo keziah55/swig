@@ -31,6 +31,9 @@ public:
   NumPyDocConverter(int flags = 0);
   String *makeDocumentation(Node *node);
 
+  // reimplemented
+  String *getDoxygenComment(Node *node);
+
 protected:
   size_t m_tableLineLen;
   bool m_prevRowIsTH;
@@ -200,9 +203,18 @@ private:
 
   // Helper functions for fillStaticTables(): make a new tag handler object.
   TagHandlersMap::mapped_type make_handler(tagHandler handler);
-  TagHandlersMap::mapped_type make_handler(tagHandler handler, const char *arg);
+  TagHandlersMap::mapped_type make_handler(tagHandler handlFer, const char *arg);
 
   void fillStaticTables();
+
+  // the first param, return etc needs a header
+  std::map<std::string, bool> sectionHeaders;
+
+  // set keys in sectionHeaders, with all values false
+  void resetSectionHeaders();
+
+  // add header string to `translatedComment`
+  void setSectionHeader(std::string header, std::string &translatedComment);
 };
 
 #endif

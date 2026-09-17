@@ -29,7 +29,6 @@ std::map<std::string, std::string> NumPyDocConverter::sectionTitles;
 
 using std::string;
 
-
 /* static */
 NumPyDocConverter::TagHandlersMap::mapped_type NumPyDocConverter::make_handler(tagHandler handler) {
   return make_pair(handler, std::string());
@@ -219,9 +218,27 @@ void NumPyDocConverter::fillStaticTables() {
   tagHandlers["&rarr"] = make_handler(&NumPyDocConverter::handleHtmlEntity, "-->");
 }
 
+void NumPyDocConverter::setSectionHeader(std::string header, std::string &translatedComment) {
+
+  if (!sectionHeaders[header]) {
+    translatedComment += header + "\n" + std::string(header.size(), '-') + "\n";
+    sectionHeaders[header] = true;
+  }
+}
+
+void NumPyDocConverter::resetSectionHeaders() {
+  sectionHeaders["Parameters"] = false;
+  sectionHeaders["Returns"] = false;
+}
+
+String *NumPyDocConverter::getDoxygenComment(Node *node) {
+  resetSectionHeaders();
+  return DoxygenTranslator::getDoxygenComment(node);
+}
+
 NumPyDocConverter::NumPyDocConverter(int flags) : DoxygenTranslator(flags), m_tableLineLen(0), m_prevRowIsTH(false) {
   fillStaticTables();
-  printf("NumPyDocConverter\n");
+  resetSectionHeaders();
 }
 
 // Return the type as it should appear in the output documentation.
@@ -292,8 +309,6 @@ std::string NumPyDocConverter::getParamValue(std::string param) {
 }
 
 std::string NumPyDocConverter::translateSubtree(DoxygenEntity &doxygenEntity) {
-
-  std::cout << "translateSubtree '" << doxygenEntity.typeOfEntity << "' '" << doxygenEntity.data << "'" << std::endl;
 
   std::string translatedComment;
 
@@ -527,6 +542,8 @@ void NumPyDocConverter::handleTagParam(DoxygenEntity &tag, std::string &translat
     return;
 
   IndentGuard indent(translatedComment, m_indent);
+
+  setSectionHeader("Parameters", translatedComment);
 
   DoxygenEntity paramNameEntity = *tag.entityList.begin();
   tag.entityList.pop_front();
