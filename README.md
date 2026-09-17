@@ -1,6 +1,6 @@
 # SWIG (Simplified Wrapper and Interface Generator)
 
-Tagline: SWIG is a compiler that integrates C and C++ with languages
+SWIG is a compiler that integrates C and C++ with languages
 including Perl, Python, Tcl, Ruby, PHP, Java, C#, D, Go, Lua,
 Octave, R, Scheme (Guile), Scilab, Ocaml.
 SWIG can also export its parse tree into XML.
@@ -27,9 +27,10 @@ https://www.swig.org/legal.html
 
 Please see the [CHANGES.current](CHANGES.current)
 file for a detailed list of bug fixes and
-new features for the current release. The CHANGES file contains bug fixes
+new features for the current release.
+The [CHANGES](CHANGES) file contains bug fixes
 and new features for older versions. A summary of changes in each release
-can be found in the RELEASENOTES file.
+can be found in the [RELEASENOTES](RELEASENOTES) file.
 
 ## Documentation
 
@@ -53,9 +54,10 @@ The developers strive their best to preserve backwards compatibility
 between releases, but this is not always possible as the overriding
 aim is to provide the best wrapping experience. Where backwards
 compatibility is known to be broken, it is clearly marked as an
-incompatibility in the CHANGES and CHANGES.current files.
+incompatibility in the [CHANGES](CHANGES) and
+[CHANGES.current](CHANGES.current) files.
 
-See the documentation for details of the SWIG_VERSION preprocessor
+See the documentation for details of the `SWIG_VERSION` preprocessor
 symbol if you have backward compatibility issues and need to use more
 than one version of SWIG.
 
@@ -81,7 +83,7 @@ The Examples directory contains a variety of examples of using SWIG
 and it has some browsable documentation.  Simply point your browser to
 the file "Example/index.html".
 
-The Examples directory also includes Visual C++ project 6 (.dsp) files for
+The Examples directory also includes Visual C++ project 6 (`.dsp`) files for
 building some of the examples on Windows. Later versions of Visual Studio
 will convert these old style project files into a current solution file.
 
