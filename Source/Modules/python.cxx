@@ -18,6 +18,7 @@
 #include <errno.h>
 #include <stdint.h>
 #include "pydoc.h"
+#include "numpydoc.h"
 
 #define PYSHADOW_MEMBER          0x2
 #define WARN_PYTHON_MULTIPLE_INH 405
@@ -97,6 +98,7 @@ static int nothreads = 0;
 /* Other options */
 static int dirvtable = 0;
 static int doxygen = 0;
+static int numpydoc = 0;
 static int fastunpack = 1;
 static int fastproxy = 0;
 static int olddefs = 0;
@@ -139,6 +141,7 @@ static const char *usage3 = "\
      -noproxy        - Don't generate proxy classes\n\
      -nortti         - Disable the use of the native C++ RTTI with directors\n\
      -nothreads      - Disable thread support for the entire interface\n\
+     -numpydoc       - Use NumPy style for doc comments. Must be used in conjunction with -doxygen\n\
      -olddefs        - Keep the old method definitions when using -fastproxy\n\
      -pyi            - Generate a .pyi stub file\n\
      -pyifile <file> - Generate the .pyi stub file with name <file>, also implies -pyi\n\
@@ -407,6 +410,9 @@ public:
         } else if (strcmp(argv[i], "-debug-doxygen-parser") == 0) {
           doxygen_translator_flags |= DoxygenTranslator::debug_parser;
           Swig_mark_arg(i);
+        } else if (strcmp(argv[i], "-numpydoc") == 0) {
+          numpydoc = 1;
+          Swig_mark_arg(i);
         } else if (strcmp(argv[i], "-nofastunpack") == 0) {
           fastunpack = 0;
           Swig_mark_arg(i);
@@ -528,8 +534,13 @@ public:
       Preprocessor_define("SWIGPYTHON_FASTPROXY", 0);
     }
 
-    if (doxygen)
-      doxygenTranslator = new PyDocConverter(doxygen_translator_flags);
+    if (doxygen) {
+      if (numpydoc) {
+        doxygenTranslator = new NumPyDocConverter(doxygen_translator_flags);
+      } else {
+        doxygenTranslator = new PyDocConverter(doxygen_translator_flags);
+      }
+    }
 
     if (!global_name)
       global_name = NewString("cvar");
