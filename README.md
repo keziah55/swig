@@ -65,7 +65,7 @@ than one version of SWIG.
 
 Please read the Doc/Manual/Preface.html#Preface_installation for
 full installation instructions for Windows, Unix and Mac OS X
-using the release tarball/zip file. The INSTALL file has generic
+using the release tarball/zip file. The [INSTALL](INSTALL) file has generic
 build and installation instructions for Unix users.
 Users wishing to build and install code from Github should
 visit https://swig.org/svn.html to obtain the more detailed
