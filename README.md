@@ -1,9 +1,9 @@
 # SWIG (Simplified Wrapper and Interface Generator)
 
 Tagline: SWIG is a compiler that integrates C and C++ with languages
-         including Perl, Python, Tcl, Ruby, PHP, Java, C#, D, Go, Lua,
-         Octave, R, Scheme (Guile), Scilab, Ocaml.
-         SWIG can also export its parse tree into XML.
+including Perl, Python, Tcl, Ruby, PHP, Java, C#, D, Go, Lua,
+Octave, R, Scheme (Guile), Scilab, Ocaml.
+SWIG can also export its parse tree into XML.
 
 SWIG reads annotated C/C++ header files and creates wrapper code (glue
 code) in order to make the corresponding C/C++ libraries available to
@@ -13,7 +13,8 @@ language.
 Up-to-date SWIG related information can be found at
 https://www.swig.org
 
-A SWIG FAQ and other hints can be found on the [SWIG Wiki](https://github.com/swig/swig/wiki)
+A SWIG FAQ and other hints can be found on the
+[SWIG Wiki](https://github.com/swig/swig/wiki)
 
 ## License
 
@@ -70,7 +71,7 @@ steps are required compared to building from the release tarball.
 
 ## Testing
 
-The typical 'make -k check' can be performed on Unix operating systems.
+The typical `make -k check` can be performed on Unix operating systems.
 Please read Doc/Manual/Preface.html#Preface_testing for details.
 
 ## Examples
@@ -100,23 +101,23 @@ $ swig foo.i
 ```
 
 it means that SWIG has either been incorrectly configured or
-installed.  To fix this:
+installed. To fix this:
 
-1.  Make sure you remembered to do a 'make install' and that
+1.  Make sure you remembered to do a `make install` and that
     the installation actually worked.  Make sure you have
     write permission on the install directory.
 
-2.  If that doesn't work, type 'swig -swiglib' to find out
+2.  If that doesn't work, type `swig -swiglib` to find out
     where SWIG thinks its library is located.
 
 3.  If the location is not where you expect, perhaps
     you supplied a bad option to configure.  Use
-    ./configure --prefix=pathname to set the SWIG install
+    `./configure --prefix=pathname` to set the SWIG install
     location.   Also, make sure you don't include a shell
-    escape character such as ~ when you specify the path.
+    escape character such as `~` when you specify the path.
 
-4.  The SWIG library can be changed by setting the SWIG_LIB
-    environment variable.  However, you really shouldn't
+4.  The SWIG library can be changed by setting the `SWIG_LIB`
+    environment variable. However, you really shouldn't
     have to do this.
 
 If you are having other troubles, you might look at the SWIG Wiki at
