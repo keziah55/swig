@@ -25,7 +25,8 @@ https://www.swig.org/legal.html
 
 ## Release Notes
 
-Please see the CHANGES.current file for a detailed list of bug fixes and
+Please see the [CHANGES.current](CHANGES.current)
+file for a detailed list of bug fixes and
 new features for the current release. The CHANGES file contains bug fixes
 and new features for older versions. A summary of changes in each release
 can be found in the RELEASENOTES file.
